@@ -1,0 +1,274 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Asses
+{
+
+    class Program
+    {
+        public static int len=0;
+        public string[] arr = new string[len];
+        public string[] temp = new string[len];
+
+
+        //public int i;
+        public void Input()
+
+        {
+            int f = 0;
+            do
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    Console.WriteLine("Enter Value" + (i + 1));
+                    arr[i] = Console.ReadLine();
+
+                    string check = arr[i];
+                    if (check.Length > 0)
+                    {
+                        char[] charrarr = check.ToCharArray();
+                        foreach (var z in charrarr)
+                        {
+                            try
+                            {
+                                if (!(z >= 65 && z <= 122))
+                                {
+                                    Console.WriteLine("INVALID INPUT");
+                                    f++;
+                                    i--;
+                                    break;
+                                    
+                                }
+                                else
+                                {
+                                    temp[i] = arr[i];
+
+
+                                }
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine(e);
+                            }
+                        }
+                    
+                    }
+                } 
+
+
+
+
+            } while (f < 1);
+        }
+        public void ShowInput()
+        {
+           
+            foreach (var arr1 in temp)
+            {
+               
+                Console.WriteLine(arr1);
+            }
+        }
+        public void Reverse()
+        {
+            for (int i = arr.Length - 1; i >= 0; i--)
+            {
+                Console.WriteLine(arr[i]);
+            }
+        }
+        public void ShowLast3Values()
+        {
+            for (int i = arr.Length - 3; i <= arr.Length - 1; i++)
+            {
+                Console.WriteLine(arr[i]);
+            }
+        }
+        public void Show2ndVal()
+        {
+            Console.WriteLine(arr[1]);
+        }
+        public void ascendingOrderSort()
+        {
+            int i, j;
+
+            for (i = 1; i < arr.Length; i++)
+            {
+                IComparable value = arr[i];
+                j = i - 1;
+                while ((j >= 0) && (arr[j].CompareTo(value) > 0))
+                {
+                    arr[j + 1] = arr[j];
+                    j--;
+                }
+                arr[j + 1] = (string)value;
+            }
+            foreach (var item in arr)
+            {
+                Console.WriteLine(item);
+            }
+            /* string temp;
+             for (int i = 0; i < arr.Length; i++)
+             {
+                 for (int j = i + 1; j < arr.Length; j++)
+                 {
+                     if (arr[i].CompareTo(arr[j]) > 0)
+                     {
+                         temp = arr[i];
+                         arr[i] = arr[j];
+                         arr[j] = temp;
+                     }
+                 }
+             }
+             for (int k = 0; k < arr.Length; k++)
+             {
+                 Console.WriteLine(arr[k]);
+             }*/
+        }
+        public void Top2Element()
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                Console.WriteLine(arr[i]);
+            }
+        }
+        public void StringContansVowelOrNot()
+        {
+            foreach (var charArr in arr)
+            {
+                char[] char1 = charArr.ToCharArray();
+
+                for (int i = 0; i < char1.Length; i++)
+                {
+                     
+                    if (char1[i] == 'a' || char1[i] == 'e' || char1[i] == 'i' || char1[i] == 'o' || char1[i] == 'u')
+                    {
+                        Console.WriteLine(charArr);
+                        break;
+                    }
+                }
+            }
+        }
+        public void CheckDuplicate()
+        {
+            int count = 1;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                for (int j = i + 1; j < arr.Length; j++)
+                {
+                    if (arr[i] == arr[j])
+                    {
+                        //Console.WriteLine(arr[i]);
+                        if (count == 1 && arr[j] != "")
+                        {
+                            Console.WriteLine(arr[i]);
+                        }
+                        arr[j] = "";
+                        count++;
+                    }
+                }
+                count = 1;
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            do
+            {
+                Console.WriteLine("Enter No of Inputs to be taken *Should not be more than 15*");
+                do
+                {
+                    try
+                    {
+
+
+                        len = Convert.ToInt32(Console.ReadLine());
+
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Enter Numbers Only");
+                    }
+                }
+                while (len <= 0);
+                
+
+                
+
+               
+                if (len > 15)
+                {
+                    Console.WriteLine("Must be less than or equal to 15");
+                }
+            } while (len > 15);
+            Program p = new Program();
+            p.Input();
+            int check=0;
+            do
+            {
+                Console.WriteLine("Select an Option");
+                Console.WriteLine("1 <== Show Input");
+                Console.WriteLine("2 <== Reverse Array");
+                Console.WriteLine("3 <== Show Last 3 Values of Array");
+                Console.WriteLine("4 <== Show 2nd Value of Array");
+                Console.WriteLine("5 <== Sort Array in Ascending Order");
+                Console.WriteLine("6 <== Show Top2 Values of Array");
+                Console.WriteLine("7 <== Show Values with Vowels");
+                Console.WriteLine("8 <== Show Duplicate values if exist");
+                Console.WriteLine("9 <== Exit");
+
+                int opt = 0;
+                //int check=0 
+                    try
+                    {
+                        opt = Convert.ToInt32(Console.ReadLine());
+                    check = opt;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Enter Number Only");
+                    }
+                
+                
+                switch (opt)
+                {
+                    case 1:
+                        p.ShowInput();
+                        break;
+                    case 2:
+                        p.Reverse();
+                        break;
+                    case 3:
+                        p.ShowLast3Values();
+                        break;
+                    case 4:
+                        p.Show2ndVal();
+                        break;
+                    case 5:
+                        p.ascendingOrderSort();
+                        break;
+                    case 6:
+                        p.Top2Element();
+                        break;
+                    case 7:
+                        p.StringContansVowelOrNot();
+                        break;
+                    case 8:
+                        p.CheckDuplicate();
+                        break;
+                    case 9:
+                        Console.WriteLine("Press Any Key to Exit");
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Input");
+                        break;
+
+                }
+            } while (check != 9);
+
+            Console.ReadKey();
+        }
+    }
+}
